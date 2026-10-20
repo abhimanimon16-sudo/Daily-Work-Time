@@ -1,14 +1,13 @@
 name: Build Daily Work Time APK
 
-on:
-  workflow_dispatch:
+on: [push, workflow_dispatch]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Get project
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up Java
@@ -17,7 +16,7 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Extract Android project
+      - name: Extract project
         run: |
           unzip -o DailyWorkTimeAndroidProject.zip
           ls -la
